@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnDatabase;
     private Button btnQuiz;
     private Button btnAddEntry;
-    public Map<String, Integer> database;
+    //public Map<String, Integer> database;
 
 
     @Override
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(view.getId()){
             case R.id.btnDatabase:
                 setContentView(R.layout.activity_database);
-                Toast.makeText(this, "Going to Database", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Going to Database", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnQuiz:
                 setContentView(R.layout.activity_quiz);
@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //initialize HashMap
-        database = new HashMap<>();
-        database.put("Cat", R.drawable.cat_background);
+        //database = new HashMap<>();
+        //database.put("Cat", R.mipmap.cat);
 
         //Initializing the Views
         btnDatabase = findViewById(R.id.btnDatabase);
