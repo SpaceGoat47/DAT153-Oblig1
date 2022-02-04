@@ -15,7 +15,7 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.btnTest:
-                //imgCat.setImageResource(R.mipmap.cat);
+                //imgCat.setImageResource();
                 imgCat.setVisibility(View.VISIBLE);
                 break;
             default:

@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="@+id/btnTest"
         app:layout_constraintStart_toStartOf="@+id/btnTest"
         app:layout_constraintTop_toBottomOf="@+id/btnTest"
-        android:visibility="visible"/>
+        android:visibility="invisible"
+        android:src="@drawable/ic_cat"/>
 
     <Button
         android:id="@+id/btnTest"
