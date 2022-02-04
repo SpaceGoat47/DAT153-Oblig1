@@ -2,10 +2,14 @@ package com.example.dat153oblig1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -13,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnDatabase;
     private Button btnQuiz;
     private Button btnAddEntry;
+    public Map<String, Integer> database;
+
 
     @Override
     public void onClick(View view) {
@@ -36,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //initialize HashMap
+        database = new HashMap<>();
+        database.put("Cat", R.drawable.cat_background);
 
         //Initializing the Views
         btnDatabase = findViewById(R.id.btnDatabase);
