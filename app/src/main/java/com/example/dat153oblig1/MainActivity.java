@@ -2,6 +2,7 @@ package com.example.dat153oblig1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnQuiz;
     private Button btnAddEntry;
     public Map<String, Integer> database;
+    private Intent intentDatabase, intentQuiz, intentAddEntry;
 
 
     @Override
@@ -25,13 +27,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(view.getId()){
             case R.id.btnDatabase:
                 setContentView(R.layout.activity_database);
-                //Toast.makeText(this, "Going to Database", Toast.LENGTH_SHORT).show();
+                startActivity(intentDatabase);
+                Toast.makeText(this, "Going to Database", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnQuiz:
                 setContentView(R.layout.activity_quiz);
+                startActivity(intentQuiz);
                 break;
             case R.id.btnAddEntry:
                 setContentView(R.layout.activity_add_entry);
+                startActivity(intentAddEntry);
                 break;
             default:
                 break;
@@ -51,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDatabase = findViewById(R.id.btnDatabase);
         btnQuiz = findViewById(R.id.btnQuiz);
         btnAddEntry = findViewById(R.id.btnAddEntry);
+
+        //initializing the intents
+        intentDatabase = new Intent(this, DatabaseActivity.class);
+        intentQuiz = new Intent(this, QuizActivity.class);
+        intentAddEntry = new Intent(this, AddEntryActivity.class);
 
         //set the onClickListener
         //this refers to View.OnClickListener

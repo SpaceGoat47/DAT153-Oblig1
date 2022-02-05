@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class DatabaseActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -16,7 +17,8 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         switch(view.getId()){
             case R.id.btnTest:
                 //imgCat.setImageResource();
-                imgCat.setVisibility(View.VISIBLE);
+                //imgCat.setVisibility(View.INVISIBLE);
+                Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -32,5 +34,7 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         imgCat = findViewById(R.id.imgCat);
 
         btnTest.setOnClickListener(this);
+
+        //imgCat.setVisibility(View.INVISIBLE);
     }
 }
