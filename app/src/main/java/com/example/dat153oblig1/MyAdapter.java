@@ -4,19 +4,24 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     String data1[], data2[];
-    int images[];
+    private ArrayList<Integer> images;
     Context context;
 
-    public MyAdapter(Context c, String s1[], String s2[], int images[]){
+    Animal animal;
+
+    public MyAdapter(Context c, String[] s1, String[] s2, ArrayList<Integer> images){
         this.context = c;
         this.data1 = s1;
         this.data2 = s2;
@@ -35,19 +40,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.myText1.setText(data1[position]);
         holder.myText2.setText(data2[position]);
-        holder.myImage.setImageResource(images[position]);
+        holder.myImage.setImageResource((Integer) images.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return images.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView myText1, myText2;
         ImageView myImage;
+        Button btnDelete;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
