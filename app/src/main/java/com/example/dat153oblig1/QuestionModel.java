@@ -1,10 +1,14 @@
 package com.example.dat153oblig1;
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+
 public class QuestionModel {
-    private String question, option1, option2, option3;
+    private Integer question;
+    private String option1, option2, option3;
     private int correctAnsNo;
 
-    public QuestionModel(String question, String option1, String option2, String option3, int correctAnsNo) {
+    public QuestionModel(Integer question, String option1, String option2, String option3, int correctAnsNo) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -12,11 +16,11 @@ public class QuestionModel {
         this.correctAnsNo = correctAnsNo;
     }
 
-    public String getQuestion() {
+    public Integer getQuestion() {
         return question;
     }
 
-    public void setQuestion(String question) {
+    public void setQuestion(Integer question) {
         this.question = question;
     }
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -20,7 +21,8 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private TextView tvQuestion, tvScore, tvQuestionNo, tvTimer;
+    private ImageView tvQuestion;
+    private TextView  tvScore, tvQuestionNo, tvTimer;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3;
     private Button btnNext;
@@ -47,7 +49,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
         questionsList = new ArrayList<>();
-        tvQuestion = findViewById(R.id.textQuestion);
+        tvQuestion = findViewById(R.id.imageViewQuestion);
         tvScore = findViewById(R.id.textScore);
         tvQuestionNo = findViewById(R.id.textQuestionNo);
         tvTimer = findViewById(R.id.textTimer);
@@ -137,7 +139,7 @@ public class QuizActivity extends AppCompatActivity {
         {
             timer();
             currentQuestion = questionsList.get(qCounter);
-            tvQuestion.setText(currentQuestion.getQuestion());
+            tvQuestion.setImageResource(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -169,10 +171,9 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void addQuestions() {
-        questionsList.add(new QuestionModel("A er rett?", "A", "B", "C",1));
-        questionsList.add(new QuestionModel("B er rett?", "A", "B", "C",2));
-        questionsList.add(new QuestionModel("B er rett?", "A", "B", "C",2));
-        questionsList.add(new QuestionModel("C er rett?", "A", "B", "C",3));
-        questionsList.add(new QuestionModel("A er rett?", "A", "B", "C",1));
+        questionsList.add(new QuestionModel(R.drawable.ic_launcher_foreground, "A", "B", "C",1));
+        questionsList.add(new QuestionModel(R.drawable.ic_cat, "A", "B", "C",1));
+
     }
 }
+//  questionsList.add(new QuestionModel("B er rett?", "A", "B", "C",2));
