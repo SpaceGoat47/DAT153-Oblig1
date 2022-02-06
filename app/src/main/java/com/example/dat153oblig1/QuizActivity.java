@@ -71,7 +71,7 @@ public class QuizActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(answerd == false)
+                if(!answerd)
                 {
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked())
                     {
@@ -171,8 +171,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void addQuestions() {
-        questionsList.add(new QuestionModel(R.drawable.ic_launcher_foreground, "A", "B", "C",1));
-        questionsList.add(new QuestionModel(R.drawable.ic_cat, "A", "B", "C",1));
+        questionsList.add(new QuestionModel(R.drawable.ic_launcher_foreground, "Riktig", "Feil", "Denne er og feil",1));
+        questionsList.add(new QuestionModel(R.drawable.ic_cat, "Feil", "Riktig", "Feil",2));
 
     }
 }
