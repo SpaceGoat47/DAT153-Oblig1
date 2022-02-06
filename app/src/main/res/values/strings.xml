@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">DAT153 Oblig1</string>
+    
+    <string-array name="animal_names">
+        <item>Dog</item>
+        <item>Horse</item>
+        <item>Cat</item>
+
+    </string-array>
+
+    <string-array name="description">
+        <item>Woof</item>
+        <item>HNEEEH</item>
+        <item>Mjau</item>
+
+    </string-array>
+    
 </resources>

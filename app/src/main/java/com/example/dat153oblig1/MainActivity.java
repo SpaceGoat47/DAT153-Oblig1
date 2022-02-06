@@ -1,10 +1,12 @@
 package com.example.dat153oblig1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,9 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnDatabase;
     private Button btnQuiz;
     private Button btnAddEntry;
-    public Map<String, Integer> database;
+    private Map<String, Integer> database;
     private Intent intentDatabase, intentQuiz, intentAddEntry;
-
 
     @Override
     public void onClick(View view) {
@@ -48,10 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //initialize HashMap
-        database = new HashMap<>();
-        database.put("Cat", R.drawable.ic_cat);
-
         //Initializing the Views
         btnDatabase = findViewById(R.id.btnDatabase);
         btnQuiz = findViewById(R.id.btnQuiz);
@@ -67,5 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDatabase.setOnClickListener(this);
         btnQuiz.setOnClickListener(this);
         btnAddEntry.setOnClickListener(this);
+
+
+
     }
 }
