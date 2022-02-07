@@ -54,7 +54,8 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         intentAddEntry = new Intent(this, AddEntryActivity.class);
 
         intentMain = getIntent();
-        //ArrayList<String> names =
+        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
+        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
 
         //set onCLickListener
         btnAddEntry2.setOnClickListener(this);
@@ -62,37 +63,12 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         //get resources from strings.xml and store in s1 & s2 arrays
         //names = getResources().getStringArray(R.array.animal_names);
         //s2 = getResources().getStringArray(R.array.description);
-        names = new ArrayList<>();
-        names.add("Dog");
-        names.add("Horse");
-        names.add("Cat");
-
-        //TO BE REMOVED -- used as test
-        images = new ArrayList<>();
-        images.add(R.drawable.dog);
-        images.add(R.drawable.horse);
-        images.add(R.drawable.ic_cat);
-
-        //intentMain = getIntent();
-        //HashMap<String, Integer> database = (HashMap<String, Integer>) intentMain.getSerializableExtra("hashmap");
-
 
         //Initialize MyAdapter class
         //MyAdapter myAdapter = new MyAdapter(this, s1, s2, images);
         MyAdapter testAdapter = new MyAdapter(this, names, images);
         recyclerView.setAdapter(testAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerView.setAdapter(myAdapter);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-    }
-
-    public static Object getKeyFromValue(HashMap hm, Object value){
-        for(Object o: hm.keySet()){
-            if(hm.get(o).equals(value)){
-                return o;
-            }
-        }
-        return null;
     }
 }
