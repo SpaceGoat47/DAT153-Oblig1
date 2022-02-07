@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +22,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnDatabase;
     private Button btnQuiz;
     private Button btnAddEntry;
+    //to be removed
     private Map<String, Integer> database;
+
+    private ArrayList<String> names;
+    private ArrayList<Integer> images;
     private Intent intentDatabase, intentQuiz, intentAddEntry;
 
     @Override
@@ -65,6 +71,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnQuiz.setOnClickListener(this);
         btnAddEntry.setOnClickListener(this);
 
+        //TO BE REMOVED
+        database = new HashMap<>();
+        database.put("Cat", R.drawable.ic_cat);
+        database.put("Dog", R.drawable.dog);
+        database.put("Horse", R.drawable.horse);
+        //
+
+        //initialize the ArrayLists and insert items
+        names = new ArrayList<>();
+        images = new ArrayList<>();
+        names.add("Dog");
+        names.add("Horse");
+        names.add("Cat");
+        images.add(R.drawable.dog);
+        images.add(R.drawable.horse);
+        images.add(R.drawable.ic_cat);
+
+        intentDatabase.putExtra("images", images);
+        intentDatabase.putExtra("names", names);
+
+        //intentAddEntry.putExtra("hashmap", (Serializable) database);
+        //intentDatabase.putExtra("hashmap", (Serializable) database);
 
 
     }

@@ -22,11 +22,10 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
     Button btnAddEntry2, btnRemove, btnSort;
     String s1[], s2[];
     RecyclerView recyclerView;
-    //TODO change to ListArray?
-    //int images[] = {R.drawable.dog, R.drawable.horse, R.drawable.ic_cat};
     private Intent intentAddEntry;
-
     private ArrayList<Integer> images;
+    private ArrayList<String> names;
+    Intent intentMain;
 
 
     @Override
@@ -54,31 +53,22 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         recyclerView = findViewById(R.id.recyclerView);
         intentAddEntry = new Intent(this, AddEntryActivity.class);
 
+        intentMain = getIntent();
+        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
+        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
+
         //set onCLickListener
         btnAddEntry2.setOnClickListener(this);
 
         //get resources from strings.xml and store in s1 & s2 arrays
-        s1 = getResources().getStringArray(R.array.animal_names);
-        s2 = getResources().getStringArray(R.array.description);
-
-        images = new ArrayList<>();
-        images.add(R.drawable.dog);
-        images.add(R.drawable.horse);
-        images.add(R.drawable.ic_cat);
+        //names = getResources().getStringArray(R.array.animal_names);
+        //s2 = getResources().getStringArray(R.array.description);
 
         //Initialize MyAdapter class
-        MyAdapter myAdapter = new MyAdapter(this, s1, s2, images);
-        recyclerView.setAdapter(myAdapter);
+        //MyAdapter myAdapter = new MyAdapter(this, s1, s2, images);
+        MyAdapter testAdapter = new MyAdapter(this, names, images);
+        recyclerView.setAdapter(testAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-        /*
-        animal = new ArrayList<>();
-        animal.add(new Animal("Dog", R.drawable.dog));
-        animal.add(new Animal("Horse", R.drawable.horse));
-        animal.add(new Animal("Cat", R.drawable.ic_cat));
-        */
-
 
     }
 }
