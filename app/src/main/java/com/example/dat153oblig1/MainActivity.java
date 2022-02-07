@@ -71,13 +71,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnQuiz.setOnClickListener(this);
         btnAddEntry.setOnClickListener(this);
 
-        //TO BE REMOVED
-        database = new HashMap<>();
-        database.put("Cat", R.drawable.ic_cat);
-        database.put("Dog", R.drawable.dog);
-        database.put("Horse", R.drawable.horse);
-        //
-
         //initialize the ArrayLists and insert items
         names = new ArrayList<>();
         images = new ArrayList<>();
@@ -90,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         intentDatabase.putExtra("images", images);
         intentDatabase.putExtra("names", names);
+        intentQuiz.putExtra("images", images);
+        intentQuiz.putExtra("names", names);
+
 
         //intentAddEntry.putExtra("hashmap", (Serializable) database);
         //intentDatabase.putExtra("hashmap", (Serializable) database);

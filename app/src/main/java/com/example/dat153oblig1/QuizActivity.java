@@ -4,6 +4,7 @@ package com.example.dat153oblig1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,6 +27,9 @@ public class QuizActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3;
     private Button btnNext;
+    private ArrayList<Integer> images;
+    private ArrayList<String> names;
+    private Intent intentMain;
 
     int totalQuestions;
     int qCounter = 0;
@@ -47,6 +51,9 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        intentMain = getIntent();
+        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
+        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
 
         questionsList = new ArrayList<>();
         tvQuestion = findViewById(R.id.imageViewQuestion);
