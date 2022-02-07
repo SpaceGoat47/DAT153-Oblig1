@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,9 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnDatabase;
     private Button btnQuiz;
     private Button btnAddEntry;
-    //to be removed
-    private Map<String, Integer> database;
-
     private ArrayList<String> names;
     private ArrayList<Integer> images;
     private Intent intentDatabase, intentQuiz, intentAddEntry;
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnDatabase:
                 setContentView(R.layout.activity_database);
                 startActivity(intentDatabase);
-                Toast.makeText(this, "Going to Database", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnQuiz:
                 setContentView(R.layout.activity_quiz);
@@ -86,10 +83,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intentQuiz.putExtra("images", images);
         intentQuiz.putExtra("names", names);
 
-
-        //intentAddEntry.putExtra("hashmap", (Serializable) database);
-        //intentDatabase.putExtra("hashmap", (Serializable) database);
-
-
     }
+
+    //this is just bad freestyling...
+    /*
+    @Override
+    protected void onResume() {
+        Log.d("WTF", "Testing what happens: onResume()");
+        Intent intent = getIntent();
+        String msg = (String) intent.getSerializableExtra(AddEntryActivity.TEST);
+        //NULL
+        names.add(msg);
+        System.out.println(names);
+        super.onResume();
+    }*/
 }

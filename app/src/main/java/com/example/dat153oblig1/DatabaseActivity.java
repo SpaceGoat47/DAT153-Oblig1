@@ -34,7 +34,8 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btnAddEntry2:
                 setContentView(R.layout.activity_add_entry);
                 startActivity(intentAddEntry);
-                Toast.makeText(this, "TESTING TESTING", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnSort:
                 break;
             default:
                 break;
@@ -60,12 +61,7 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         //set onCLickListener
         btnAddEntry2.setOnClickListener(this);
 
-        //get resources from strings.xml and store in s1 & s2 arrays
-        //names = getResources().getStringArray(R.array.animal_names);
-        //s2 = getResources().getStringArray(R.array.description);
-
         //Initialize MyAdapter class
-        //MyAdapter myAdapter = new MyAdapter(this, s1, s2, images);
         MyAdapter testAdapter = new MyAdapter(this, names, images);
         recyclerView.setAdapter(testAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -36,6 +36,8 @@ public class QuizActivity extends AppCompatActivity {
     int score = 0;
 
 
+
+
     ColorStateList dfrbColour;
     boolean answerd;
 
@@ -137,6 +139,11 @@ public class QuizActivity extends AppCompatActivity {
 
     private void showNextQuestion()
     {
+
+        intentMain = getIntent();
+        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
+        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
+
         radioGroup.clearCheck();
         rb1.setTextColor(dfrbColour);
         rb2.setTextColor(dfrbColour);
@@ -146,7 +153,7 @@ public class QuizActivity extends AppCompatActivity {
         {
             timer();
             currentQuestion = questionsList.get(qCounter);
-            tvQuestion.setImageResource(currentQuestion.getQuestion());
+            tvQuestion.setImageResource(images.get(2));
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
