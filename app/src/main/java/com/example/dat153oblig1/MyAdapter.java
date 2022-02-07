@@ -27,13 +27,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     //private HashMap<String, Integer> test;
 
 
-    public MyAdapter(Context c, String[] s1, String[] s2, ArrayList<Integer> images){
-        this.context = c;
-        this.data1 = s1;
-        this.data2 = s2;
-        this.images = images;
-    }
-
     public MyAdapter(Context c, ArrayList<String> names, ArrayList<Integer> images){
         this.context = c;
         this.names = names;
