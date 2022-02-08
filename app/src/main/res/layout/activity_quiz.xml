@@ -24,7 +24,8 @@
             android:id="@+id/textQuestionNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="440dp"
+            android:layout_centerHorizontal="true"
             android:text="Questions: 1/n"
             android:textColor="@color/black"
             android:textSize="17sp" />
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textQuestionNo"
             android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
             android:text="Score: 0"
             android:textColor="@color/black"
             android:textSize="17sp" />
@@ -44,35 +46,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="55dp"
             android:layout_marginEnd="37dp"
             android:text="00:20"
             android:textColor="@color/black"
             android:textSize="37sp" />
-
-        <TextView
-            android:id="@+id/textQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/radioGroup"
-            android:layout_marginBottom="10dp"
-            android:text="Hva heter pusen?"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
 
 
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
+            android:layout_marginTop="500dp"
+            >
             <RadioButton
                 android:id="@+id/rb1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alternativ 1"
+                android:text="Option 1"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -95,7 +86,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/radioGroup"
-            android:layout_marginTop="20dp"
             android:text="Next"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -103,10 +93,10 @@
 
         <ImageView
             android:id="@+id/imageViewQuestion"
-            android:layout_width="125dp"
-            android:layout_height="102dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginVertical="120dp"
+            android:layout_marginVertical="130dp"
             app:srcCompat="@drawable/ic_cat" />
 
 
