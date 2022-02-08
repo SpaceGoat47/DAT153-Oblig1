@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -34,6 +35,8 @@ public class QuizActivity extends AppCompatActivity {
     int totalQuestions;
     int qCounter = 0;
     int score = 0;
+
+    int rndQ1, rndQ2, rndQ3;
 
 
 
@@ -153,7 +156,7 @@ public class QuizActivity extends AppCompatActivity {
         {
             timer();
             currentQuestion = questionsList.get(qCounter);
-            tvQuestion.setImageResource(images.get(2));
+            tvQuestion.setImageResource(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -166,7 +169,7 @@ public class QuizActivity extends AppCompatActivity {
         }
         else
         {
-            finish();
+            setContentView(R.layout.activity_main);
         }
     }
 
@@ -185,8 +188,25 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void addQuestions() {
-        questionsList.add(new QuestionModel(R.drawable.ic_launcher_foreground, "Riktig", "Feil", "Denne er og feil",1));
-        questionsList.add(new QuestionModel(R.drawable.ic_cat, "Feil", "Riktig", "Feil",2));
+        intentMain = getIntent();
+        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
+        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
+
+        Random random = new Random();
+        rndQ1 = random.nextInt(names.size() );
+        do {
+            rndQ2 = random.nextInt(names.size());
+        } while (rndQ1 == rndQ2);
+        do {
+            rndQ3 = random.nextInt(names.size());
+        } while ((rndQ1 == rndQ3) || (rndQ2 == rndQ3));
+      /*  rndQ1 = 0;
+        rndQ2 = 1;
+        rndQ3 = 2;
+*/
+        questionsList.add(new QuestionModel(images.get(rndQ1), names.get(rndQ2), names.get(rndQ1), names.get(rndQ3),2));
+        questionsList.add(new QuestionModel(images.get(rndQ2), names.get(rndQ3), names.get(rndQ2), names.get(rndQ1),2));
+        questionsList.add(new QuestionModel(images.get(rndQ3), names.get(rndQ1), names.get(rndQ2), names.get(rndQ3),3));
 
     }
 }
