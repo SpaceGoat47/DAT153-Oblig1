@@ -169,7 +169,7 @@ public class QuizActivity extends AppCompatActivity {
         }
         else
         {
-            finish();
+            setContentView(R.layout.activity_main);
         }
     }
 
