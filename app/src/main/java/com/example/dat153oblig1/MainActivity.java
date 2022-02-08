@@ -25,22 +25,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnAddEntry;
     private ArrayList<String> names;
     private ArrayList<Integer> images;
-    private Intent intentDatabase, intentQuiz, intentAddEntry;
+    private Intent intent;
 
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.btnDatabase:
-                setContentView(R.layout.activity_database);
-                startActivity(intentDatabase);
+                intent = new Intent(this, DatabaseActivity.class);
+                intent.putExtra("images", images);
+                intent.putExtra("names", names);
+                startActivity(intent);
                 break;
             case R.id.btnQuiz:
-                setContentView(R.layout.activity_quiz);
-                startActivity(intentQuiz);
+                intent = new Intent(this, QuizActivity.class);
+                intent.putExtra("images", images);
+                intent.putExtra("names", names);
+                startActivity(intent);
                 break;
             case R.id.btnAddEntry:
-                setContentView(R.layout.activity_add_entry);
-                startActivity(intentAddEntry);
+                intent = new Intent(this, AddEntryActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -57,10 +61,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnQuiz = findViewById(R.id.btnQuiz);
         btnAddEntry = findViewById(R.id.btnAddEntry);
 
-        //initializing the intents
-        intentDatabase = new Intent(this, DatabaseActivity.class);
-        intentQuiz = new Intent(this, QuizActivity.class);
-        intentAddEntry = new Intent(this, AddEntryActivity.class);
 
         //set the onClickListener
         //this refers to View.OnClickListener
@@ -77,11 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         images.add(R.drawable.dog);
         images.add(R.drawable.horse);
         images.add(R.drawable.ic_cat);
-
-        intentDatabase.putExtra("images", images);
-        intentDatabase.putExtra("names", names);
-        intentQuiz.putExtra("images", images);
-        intentQuiz.putExtra("names", names);
 
     }
 

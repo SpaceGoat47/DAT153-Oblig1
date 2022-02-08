@@ -39,7 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         Log.d(TAG, "onCreateViewHolder: Test");
 
-        return new MyViewHolder(view);
+        return new MyViewHolder(view).linkAdapter(this);
     }
 
     @Override
@@ -57,12 +57,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         TextView myText1;
         ImageView myImage;
-        Button btnDelete;
+        private MyAdapter adapter;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             myText1 = itemView.findViewById(R.id.txtAnimalNames);
             myImage = itemView.findViewById(R.id.imgImage);
+            itemView.findViewById(R.id.btnDelete).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    adapter.images.remove(getAdapterPosition());
+                    adapter.notifyItemRemoved(getAdapterPosition());
+                }
+            });
+        }
+
+        public MyViewHolder linkAdapter(MyAdapter adapter){
+            this.adapter = adapter;
+            return this;
         }
     }
 }

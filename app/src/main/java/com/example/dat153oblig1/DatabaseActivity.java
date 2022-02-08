@@ -20,11 +20,8 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
 
     //fields
     Button btnAddEntry2, btnRemove, btnSort;
-    String s1[], s2[];
     RecyclerView recyclerView;
     private Intent intentAddEntry;
-    private ArrayList<Integer> images;
-    private ArrayList<String> names;
     Intent intentMain;
 
 
