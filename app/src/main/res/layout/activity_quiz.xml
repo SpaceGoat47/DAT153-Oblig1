@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="440dp"
             android:layout_centerHorizontal="true"
-            android:text="Questions: 1/n"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="17sp" />
 
@@ -37,7 +37,7 @@
             android:layout_below="@id/textQuestionNo"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
-            android:text="Score: 0"
+            android:text=" "
             android:textColor="@color/black"
             android:textSize="17sp" />
 
@@ -63,21 +63,21 @@
                 android:id="@+id/rb1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 1"
+                android:text=" "
                 android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/rb2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 2"
+                android:text=" "
                 android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/rb3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 3"
+                android:text=" "
                 android:textSize="20sp" />
         </RadioGroup>
 
@@ -97,7 +97,7 @@
             android:layout_height="300dp"
             android:layout_centerHorizontal="true"
             android:layout_marginVertical="130dp"
-            app:srcCompat="@drawable/ic_cat" />
+            app:srcCompat="@drawable/ic_launcher_foreground" />
 
 
     </RelativeLayout>
