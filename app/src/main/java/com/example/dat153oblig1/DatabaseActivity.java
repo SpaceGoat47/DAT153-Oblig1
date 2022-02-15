@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,23 +20,28 @@ import java.util.Map;
 
 public class DatabaseActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final String TAG = "DatabaseActivity";
+
     //fields
     Button btnAddEntry2, btnRemove, btnSort;
-    String s1[], s2[];
     RecyclerView recyclerView;
-    private Intent intentAddEntry;
-    private ArrayList<Integer> images;
-    private ArrayList<String> names;
-    Intent intentMain;
+    private Intent intent;
+    private final Database database = Database.getInstance();
 
 
     @Override
     public void onClick(View view) {
+        Log.d(TAG, "onClick-button: " + view.getResources().getResourceEntryName(view.getId()));
         switch(view.getId()){
             case R.id.btnAddEntry2:
-                setContentView(R.layout.activity_add_entry);
-                startActivity(intentAddEntry);
+                startActivity(intent);
                 Toast.makeText(this, "TESTING TESTING", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnRemove:
+                database.add(new Animal("Cow", database.getUri(3)));
+                for (Animal a: database.getDatabase()){
+                    System.out.println(a);
+                }
                 break;
             default:
                 break;
@@ -46,29 +53,31 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database);
 
+        Log.d(TAG, "onCreate: Database");
         //Initialize
         btnAddEntry2 = findViewById(R.id.btnAddEntry2);
         btnRemove = findViewById(R.id.btnRemove);
         btnSort = findViewById(R.id.btnSort);
         recyclerView = findViewById(R.id.recyclerView);
-        intentAddEntry = new Intent(this, AddEntryActivity.class);
+        intent = new Intent(this, AddEntryActivity.class);
 
-        intentMain = getIntent();
-        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
-        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
+        //intentMain = getIntent();
+        //ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
+        //ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
 
         //set onCLickListener
         btnAddEntry2.setOnClickListener(this);
+        btnRemove.setOnClickListener(this);
 
-        //get resources from strings.xml and store in s1 & s2 arrays
-        //names = getResources().getStringArray(R.array.animal_names);
-        //s2 = getResources().getStringArray(R.array.description);
+        for (Animal a: database.getDatabase()){
+            System.out.println(a);
+        }
 
         //Initialize MyAdapter class
         //MyAdapter myAdapter = new MyAdapter(this, s1, s2, images);
-        MyAdapter testAdapter = new MyAdapter(this, names, images);
-        recyclerView.setAdapter(testAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //MyAdapter testAdapter = new MyAdapter(this, names, images);
+        //recyclerView.setAdapter(testAdapter);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }

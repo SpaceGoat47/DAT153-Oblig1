@@ -23,23 +23,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "MainActivity";
     //fields
     private Button btnDatabase, btnQuiz, btnAddEntry;
-    private ArrayList<Animal> database;
     private Intent intent;
+    private final Database database = Database.getInstance();
 
     @Override
     public void onClick(View view) {
+
+        Log.d(TAG, "onClick-Button clicked: " + view.getResources().getResourceEntryName(view.getId()));
+
         switch(view.getId()){
             case R.id.btnDatabase:
-                //setContentView(R.layout.activity_database);
                 intent = new Intent(this, DatabaseActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btnQuiz:
-                //setContentView(R.layout.activity_quiz);
                 intent = new Intent(this, QuizActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btnAddEntry:
-                //setContentView(R.layout.activity_add_entry);
                 intent = new Intent(this, AddEntryActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -51,17 +54,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG, "TEST1");
-        //Initialize database and populate it
-        Database db = new Database(database);
-        db.initializeDatabase();
+        Log.d(TAG, "onCreate");
 
-        Log.d(TAG, "TEST2");
+        //add Animal objects to the Singleton database
+        database.initializeDatabase();
+
+        for(Animal a: database.getDatabase()){
+            System.out.println(a);
+        }
 
         //initialize buttons
         btnDatabase = findViewById(R.id.btnDatabase);
         btnQuiz = findViewById(R.id.btnQuiz);
         btnAddEntry = findViewById(R.id.btnAddEntry);
 
+        //set onclickListener
+        btnDatabase.setOnClickListener(this);
+        btnAddEntry.setOnClickListener(this);
+        btnQuiz.setOnClickListener(this);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+        for (Animal a: database.getDatabase()){
+            System.out.println(a);
+        }
     }
 }
