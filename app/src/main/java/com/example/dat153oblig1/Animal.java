@@ -19,10 +19,6 @@ public class Animal {
         this.image = image;
     }
 
-    public Animal() {
-
-    }
-
     @Override
     public String toString() {
         return "Animal{" +
