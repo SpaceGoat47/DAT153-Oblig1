@@ -16,11 +16,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
+
     private final Database database = Database.getInstance();
+
 
 
     @NonNull
@@ -35,9 +37,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         Animal animal = database.getAnimal(position);
         holder.txtAnimalNames.setText(animal.getName());
         holder.imgImage.setImageURI(animal.getImage());
+
     }
 
     @Override
@@ -47,12 +51,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
+
         TextView txtAnimalNames;
         ImageView imgImage;
+
         private MyAdapter adapter;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
 
             txtAnimalNames = itemView.findViewById(R.id.txtAnimalNames);
             imgImage = itemView.findViewById(R.id.imgImage);
@@ -61,6 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 adapter.notifyItemRemoved(getAdapterPosition());
             });
         }
+
         public MyViewHolder linkAdapter(MyAdapter adapter){
             this.adapter = adapter;
             return this;

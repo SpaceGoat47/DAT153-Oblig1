@@ -9,7 +9,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.util.Log;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
+
 
 public class AddEntryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,6 +32,7 @@ public class AddEntryActivity extends AppCompatActivity implements View.OnClickL
     private EditText edtText;
     private Uri uriImage;
     private ActivityResultLauncher<Intent> chooseImageResult;
+
 
     @Override
     public void onClick(View view) {
@@ -55,6 +59,7 @@ public class AddEntryActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
 
+
         Log.d(TAG, "onCreate");
 
         //initialize views
@@ -76,6 +81,7 @@ public class AddEntryActivity extends AppCompatActivity implements View.OnClickL
             Log.d(TAG, "onActivityResult: result: " + result);
             imgImage.setImageURI(uriImage);
         });
+
     }
 
         public void selectImage () {

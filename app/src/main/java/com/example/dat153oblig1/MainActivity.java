@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
+
 import android.provider.ContactsContract;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,9 +24,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "MainActivity";
     //fields
+
     private Button btnDatabase, btnQuiz, btnAddEntry;
     private Intent intent;
     private final Database database = Database.getInstance();
+
 
     @Override
     public void onClick(View view) {
@@ -34,10 +38,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(view.getId()){
             case R.id.btnDatabase:
                 intent = new Intent(this, DatabaseActivity.class);
+
                 startActivity(intent);
                 break;
             case R.id.btnQuiz:
                 intent = new Intent(this, QuizActivity.class);
+
                 startActivity(intent);
                 break;
             case R.id.btnAddEntry:
@@ -68,10 +74,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnQuiz = findViewById(R.id.btnQuiz);
         btnAddEntry = findViewById(R.id.btnAddEntry);
 
+
         //set onclickListener
+
         btnDatabase.setOnClickListener(this);
         btnAddEntry.setOnClickListener(this);
         btnQuiz.setOnClickListener(this);
+
 
     }
 
@@ -82,5 +91,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (Animal a: database.getDatabase()){
             System.out.println(a);
         }
+
     }
+
+    //this is just bad freestyling...
+    /*
+    @Override
+    protected void onResume() {
+        Log.d("WTF", "Testing what happens: onResume()");
+        Intent intent = getIntent();
+        String msg = (String) intent.getSerializableExtra(AddEntryActivity.TEST);
+        //NULL
+        names.add(msg);
+        System.out.println(names);
+        super.onResume();
+    }*/
 }

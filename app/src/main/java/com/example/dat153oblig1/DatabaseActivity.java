@@ -27,17 +27,20 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
     private static final String TAG = "DatabaseActivity";
 
     //fields
+
     Button btnAddEntry2, btnSort;
     RecyclerView recyclerView;
     private Intent intent;
     private final Database database = Database.getInstance();
     private MyAdapter myAdapter;
 
+
     @Override
     public void onClick(View view) {
         Log.d(TAG, "onClick-button: " + view.getResources().getResourceEntryName(view.getId()));
         switch(view.getId()){
             case R.id.btnAddEntry2:
+
                 startActivity(intent);
                 break;
             case R.id.btnSort:
@@ -51,6 +54,7 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
                 for (Animal a: database.getDatabase()){
                     System.out.println(a);
                 }
+
                 break;
             default:
                 break;
@@ -74,6 +78,7 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         btnAddEntry2.setOnClickListener(this);
         btnSort.setOnClickListener(this);
 
+
         for (Animal a: database.getDatabase()){
             System.out.println(a);
         }
@@ -82,6 +87,7 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         myAdapter = new MyAdapter();
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
 
     }
 
