@@ -1,5 +1,6 @@
 package com.example.dat153oblig1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,12 +10,15 @@ import android.media.Image;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,11 +27,11 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
     private static final String TAG = "DatabaseActivity";
 
     //fields
-    Button btnAddEntry2, btnRemove, btnSort;
+    Button btnAddEntry2, btnSort;
     RecyclerView recyclerView;
     private Intent intent;
     private final Database database = Database.getInstance();
-
+    private MyAdapter myAdapter;
 
     @Override
     public void onClick(View view) {
@@ -37,8 +41,14 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 Toast.makeText(this, "TESTING TESTING", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.btnRemove:
-                database.add(new Animal("Cow", database.getUri(3)));
+            case R.id.btnSort:
+                Collections.sort(database.getDatabase(), new Comparator<Animal>() {
+                    @Override
+                    public int compare(Animal animal, Animal t1) {
+                        return animal.getName().toLowerCase().compareTo(t1.getName().toLowerCase());
+                    }
+                });
+                myAdapter.notifyDataSetChanged();
                 for (Animal a: database.getDatabase()){
                     System.out.println(a);
                 }
@@ -54,30 +64,36 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_database);
 
         Log.d(TAG, "onCreate: Database");
+
         //Initialize
         btnAddEntry2 = findViewById(R.id.btnAddEntry2);
-        btnRemove = findViewById(R.id.btnRemove);
         btnSort = findViewById(R.id.btnSort);
         recyclerView = findViewById(R.id.recyclerView);
         intent = new Intent(this, AddEntryActivity.class);
 
-        //intentMain = getIntent();
-        //ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
-        //ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
-
         //set onCLickListener
         btnAddEntry2.setOnClickListener(this);
-        btnRemove.setOnClickListener(this);
+        btnSort.setOnClickListener(this);
 
         for (Animal a: database.getDatabase()){
             System.out.println(a);
         }
 
         //Initialize MyAdapter class
-        //MyAdapter myAdapter = new MyAdapter(this, s1, s2, images);
-        //MyAdapter testAdapter = new MyAdapter(this, names, images);
-        //recyclerView.setAdapter(testAdapter);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        myAdapter = new MyAdapter();
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(TAG, "onResume");
+
+        for (Animal a: database.getDatabase()){
+            System.out.println(a);
+        }
     }
 }

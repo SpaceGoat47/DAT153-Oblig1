@@ -20,70 +20,50 @@ import java.util.HashMap;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    String data1[], data2[];
-    private ArrayList<Integer> images;
-    private ArrayList<String> names;
-    Context context;
-    //private HashMap<String, Integer> test;
+    private final Database database = Database.getInstance();
 
-
-    public MyAdapter(Context c, String[] s1, String[] s2, ArrayList<Integer> images){
-        this.context = c;
-        this.data1 = s1;
-        this.data2 = s2;
-        this.images = images;
-    }
-
-    public MyAdapter(Context c, ArrayList<String> names, ArrayList<Integer> images){
-        this.context = c;
-        this.names = names;
-        this.images = images;
-    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.my_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_row, parent, false);
 
         Log.d(TAG, "onCreateViewHolder: Test");
 
-        return new MyViewHolder(view);
+        return new MyViewHolder(view).linkAdapter(this);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.myText1.setText(names.get(position));
-        //holder.myText1.setText((Integer) getKeyFromValue(test, R.drawable.ic_cat));
-        //holder.myText2.setText(data2[position]);
-        holder.myImage.setImageResource(images.get(position));
+        Animal animal = database.getAnimal(position);
+        holder.txtAnimalNames.setText(animal.getName());
+        holder.imgImage.setImageURI(animal.getImage());
     }
 
     @Override
     public int getItemCount() {
-        return images.size();
+        return database.getDatabase().size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView myText1, myText2;
-        ImageView myImage;
-        Button btnDelete;
+        TextView txtAnimalNames;
+        ImageView imgImage;
+        private MyAdapter adapter;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            myText1 = itemView.findViewById(R.id.txtAnimalNames);
-            myText2 = itemView.findViewById(R.id.txtDescription);
-            myImage = itemView.findViewById(R.id.imgImage);
-        }
-    }
 
-    public static Object getKeyFromValue(HashMap hm, Object value){
-        for(Object o: hm.keySet()){
-            if(hm.get(o).equals(value)){
-                return o;
-            }
+            txtAnimalNames = itemView.findViewById(R.id.txtAnimalNames);
+            imgImage = itemView.findViewById(R.id.imgImage);
+            itemView.findViewById(R.id.btnDelete).setOnClickListener(view -> {
+                adapter.database.getDatabase().remove(getAdapterPosition());
+                adapter.notifyItemRemoved(getAdapterPosition());
+            });
         }
-        return null;
+        public MyViewHolder linkAdapter(MyAdapter adapter){
+            this.adapter = adapter;
+            return this;
+        }
     }
 }

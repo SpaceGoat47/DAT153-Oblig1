@@ -6,8 +6,9 @@ import android.net.Uri;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Animal {
+public class Animal implements Comparator<Animal> {
 
     private static final String TAG = "Animal";
 
@@ -43,4 +44,8 @@ public class Animal {
         this.image = image;
     }
 
+    @Override
+    public int compare(Animal animal, Animal t1) {
+        return animal.getName().compareTo(t1.getName());
+    }
 }

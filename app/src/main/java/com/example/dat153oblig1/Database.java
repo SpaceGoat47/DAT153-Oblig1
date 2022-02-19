@@ -41,6 +41,10 @@ public class Database {
         return imageUri;
     }
 
+    public Animal getAnimal(int i){
+        return database.get(i);
+    }
+
     public ArrayList<Animal> getDatabase() {
         return database;
     }

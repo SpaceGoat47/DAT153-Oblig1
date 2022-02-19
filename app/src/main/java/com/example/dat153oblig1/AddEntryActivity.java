@@ -39,6 +39,8 @@ public class AddEntryActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btnAddEntry:
                 AddEntry();
                 Toast.makeText(this, "Added to database", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, DatabaseActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btnChooseImage:
                 selectImage();
