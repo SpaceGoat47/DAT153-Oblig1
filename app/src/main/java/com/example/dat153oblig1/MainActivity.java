@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
+
+import android.provider.ContactsContract;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,27 +22,28 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final String TAG = "MainActivity";
     //fields
-    private Button btnDatabase;
-    private Button btnQuiz;
-    private Button btnAddEntry;
-    private ArrayList<String> names;
-    private ArrayList<Integer> images;
+
+    private Button btnDatabase, btnQuiz, btnAddEntry;
     private Intent intent;
+    private final Database database = Database.getInstance();
+
 
     @Override
     public void onClick(View view) {
+
+        Log.d(TAG, "onClick-Button clicked: " + view.getResources().getResourceEntryName(view.getId()));
+
         switch(view.getId()){
             case R.id.btnDatabase:
                 intent = new Intent(this, DatabaseActivity.class);
-                intent.putExtra("images", images);
-                intent.putExtra("names", names);
+
                 startActivity(intent);
                 break;
             case R.id.btnQuiz:
                 intent = new Intent(this, QuizActivity.class);
-                intent.putExtra("images", images);
-                intent.putExtra("names", names);
+
                 startActivity(intent);
                 break;
             case R.id.btnAddEntry:
@@ -56,27 +60,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Initializing the Views
+        Log.d(TAG, "onCreate");
+
+        //add Animal objects to the Singleton database
+        database.initializeDatabase();
+
+        for(Animal a: database.getDatabase()){
+            System.out.println(a);
+        }
+
+        //initialize buttons
         btnDatabase = findViewById(R.id.btnDatabase);
         btnQuiz = findViewById(R.id.btnQuiz);
         btnAddEntry = findViewById(R.id.btnAddEntry);
 
 
-        //set the onClickListener
-        //this refers to View.OnClickListener
-        btnDatabase.setOnClickListener(this);
-        btnQuiz.setOnClickListener(this);
-        btnAddEntry.setOnClickListener(this);
+        //set onclickListener
 
-        //initialize the ArrayLists and insert items
-        names = new ArrayList<>();
-        images = new ArrayList<>();
-        names.add("Dog");
-        names.add("Horse");
-        names.add("Cat");
-        images.add(R.drawable.dog);
-        images.add(R.drawable.horse);
-        images.add(R.drawable.ic_cat);
+        btnDatabase.setOnClickListener(this);
+        btnAddEntry.setOnClickListener(this);
+        btnQuiz.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+        for (Animal a: database.getDatabase()){
+            System.out.println(a);
+        }
 
     }
 

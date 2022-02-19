@@ -11,16 +11,13 @@
         android:theme="@style/Theme.DAT153Oblig1">
         <activity
             android:name=".AddEntryActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:exported="false" />
         <activity
             android:name=".QuizActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:exported="false" />
         <activity
             android:name=".DatabaseActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -10,30 +10,21 @@
         android:id="@+id/btnAddEntry2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="ADD ENTRY"
         tools:layout_editor_absoluteX="146dp"
         tools:layout_editor_absoluteY="55dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnRemove"
-        android:text="Remove"
-        android:layout_toRightOf="@id/btnAddEntry2"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
-
-    <Button
         android:id="@+id/btnSort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="20dp"
-        android:layout_toRightOf="@id/btnRemove"
-        android:text="Sort"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/btnAddEntry2"
+        android:text="Sort" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
