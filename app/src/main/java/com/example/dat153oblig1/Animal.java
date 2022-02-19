@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Animal implements Comparator<Animal> {
+public class Animal {
 
     private static final String TAG = "Animal";
 
@@ -42,10 +42,5 @@ public class Animal implements Comparator<Animal> {
 
     public void setImage(Uri image) {
         this.image = image;
-    }
-
-    @Override
-    public int compare(Animal animal, Animal t1) {
-        return animal.getName().compareTo(t1.getName());
     }
 }

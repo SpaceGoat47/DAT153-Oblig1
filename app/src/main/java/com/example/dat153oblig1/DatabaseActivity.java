@@ -39,7 +39,6 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         switch(view.getId()){
             case R.id.btnAddEntry2:
                 startActivity(intent);
-                Toast.makeText(this, "TESTING TESTING", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnSort:
                 Collections.sort(database.getDatabase(), new Comparator<Animal>() {
