@@ -2,13 +2,14 @@ package com.example.dat153oblig1;
 
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.net.Uri;
 
 public class QuestionModel {
-    private Integer question;
+    private Uri question;
     private String option1, option2, option3;
     private int correctAnsNo;
 
-    public QuestionModel(Integer question, String option1, String option2, String option3, int correctAnsNo) {
+    public QuestionModel(Uri question, String option1, String option2, String option3, int correctAnsNo) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -16,13 +17,13 @@ public class QuestionModel {
         this.correctAnsNo = correctAnsNo;
     }
 
-    public Integer getQuestion() {
+    public Uri getQuestion() {
         return question;
     }
-
+/*
     public void setQuestion(Integer question) {
         this.question = question;
-    }
+    }*/
 
     public String getOption1() {
         return option1;
@@ -54,5 +55,10 @@ public class QuestionModel {
 
     public void setCorrectAnsNo(int correctAnsNo) {
         this.correctAnsNo = correctAnsNo;
+    }
+
+    public Uri getUri(int imageID){
+        Uri imageUri = Uri.parse("android.resource://com.example.dat153oblig1/" + imageID);
+        return imageUri;
     }
 }

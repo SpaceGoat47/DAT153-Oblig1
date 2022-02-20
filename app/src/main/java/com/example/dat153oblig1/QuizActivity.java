@@ -9,6 +9,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,14 +24,13 @@ import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
+    private final static String TAG = "QuizActivity";
+    private final Database database = Database.getInstance();
     private ImageView tvQuestion;
     private TextView  tvScore, tvQuestionNo, tvTimer;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3;
     private Button btnNext;
-    private ArrayList<Integer> images;
-    private ArrayList<String> names;
-    private Intent intentMain;
 
     int totalQuestions;
     int qCounter = 0;
@@ -56,9 +56,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        intentMain = getIntent();
-        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
-        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
+        Log.d(TAG, "onCreate");
 
         questionsList = new ArrayList<>();
         tvQuestion = findViewById(R.id.imageViewQuestion);
@@ -143,10 +141,6 @@ public class QuizActivity extends AppCompatActivity {
     private void showNextQuestion()
     {
 
-        intentMain = getIntent();
-        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
-        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
-
         radioGroup.clearCheck();
         rb1.setTextColor(dfrbColour);
         rb2.setTextColor(dfrbColour);
@@ -156,7 +150,8 @@ public class QuizActivity extends AppCompatActivity {
         {
             timer();
             currentQuestion = questionsList.get(qCounter);
-            tvQuestion.setImageResource(currentQuestion.getQuestion());
+            //tvQuestion.setImageURI(database.getAnimal(qCounter).getImage());
+            tvQuestion.setImageURI(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -169,7 +164,10 @@ public class QuizActivity extends AppCompatActivity {
         }
         else
         {
-            setContentView(R.layout.activity_main);
+            Intent intent = new Intent(this, MainActivity.class);
+            //onNewIntent called instead of onCreate
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
         }
     }
 
@@ -188,25 +186,24 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void addQuestions() {
-        intentMain = getIntent();
-        ArrayList<String> names = (ArrayList<String>) intentMain.getSerializableExtra("names");
-        ArrayList<Integer> images = (ArrayList<Integer>) intentMain.getSerializableExtra("images");
+
+        Log.d(TAG, "addQuestions method");
 
         Random random = new Random();
-        rndQ1 = random.nextInt(names.size() );
+        rndQ1 = random.nextInt(database.getDatabase().size() );
         do {
-            rndQ2 = random.nextInt(names.size());
+            rndQ2 = random.nextInt(database.getDatabase().size());
         } while (rndQ1 == rndQ2);
         do {
-            rndQ3 = random.nextInt(names.size());
+            rndQ3 = random.nextInt(database.getDatabase().size());
         } while ((rndQ1 == rndQ3) || (rndQ2 == rndQ3));
       /*  rndQ1 = 0;
         rndQ2 = 1;
         rndQ3 = 2;
 */
-        questionsList.add(new QuestionModel(images.get(rndQ1), names.get(rndQ2), names.get(rndQ1), names.get(rndQ3),2));
-        questionsList.add(new QuestionModel(images.get(rndQ2), names.get(rndQ3), names.get(rndQ2), names.get(rndQ1),2));
-        questionsList.add(new QuestionModel(images.get(rndQ3), names.get(rndQ1), names.get(rndQ2), names.get(rndQ3),3));
+        questionsList.add(new QuestionModel(database.getUri(rndQ1), database.getAnimalName(rndQ2), database.getAnimalName(rndQ1), database.getAnimalName(rndQ3),2));
+        questionsList.add(new QuestionModel(database.getUri(rndQ2), database.getAnimalName(rndQ3), database.getAnimalName(rndQ2), database.getAnimalName(rndQ1),2));
+        questionsList.add(new QuestionModel(database.getUri(rndQ3), database.getAnimalName(rndQ1), database.getAnimalName(rndQ2), database.getAnimalName(rndQ3),3));
 
     }
 }

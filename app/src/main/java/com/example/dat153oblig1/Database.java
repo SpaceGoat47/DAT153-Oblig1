@@ -45,6 +45,10 @@ public class Database {
         return database.get(i);
     }
 
+    public String getAnimalName(int i){
+        return database.get(i).getName();
+    }
+
     public ArrayList<Animal> getDatabase() {
         return database;
     }
