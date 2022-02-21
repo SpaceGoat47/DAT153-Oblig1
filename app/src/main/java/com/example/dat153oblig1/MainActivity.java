@@ -65,10 +65,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //add Animal objects to the Singleton database
         database.initializeDatabase();
 
-        for(Animal a: database.getDatabase()){
-            System.out.println(a);
-        }
-
         //initialize buttons
         btnDatabase = findViewById(R.id.btnDatabase);
         btnQuiz = findViewById(R.id.btnQuiz);
@@ -88,22 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        for (Animal a: database.getDatabase()){
-            System.out.println(a);
-        }
 
     }
-
-    //this is just bad freestyling...
-    /*
-    @Override
-    protected void onResume() {
-        Log.d("WTF", "Testing what happens: onResume()");
-        Intent intent = getIntent();
-        String msg = (String) intent.getSerializableExtra(AddEntryActivity.TEST);
-        //NULL
-        names.add(msg);
-        System.out.println(names);
-        super.onResume();
-    }*/
 }

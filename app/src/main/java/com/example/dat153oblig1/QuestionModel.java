@@ -60,9 +60,4 @@ public class QuestionModel {
     public void setCorrectAnsNo(int correctAnsNo) {
         this.correctAnsNo = correctAnsNo;
     }
-
-    public Uri getUri(int imageID){
-        Uri imageUri = Uri.parse("android.resource://com.example.dat153oblig1/" + imageID);
-        return imageUri;
-    }
 }

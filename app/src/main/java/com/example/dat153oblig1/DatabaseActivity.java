@@ -78,11 +78,6 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         btnAddEntry2.setOnClickListener(this);
         btnSort.setOnClickListener(this);
 
-
-        for (Animal a: database.getDatabase()){
-            System.out.println(a);
-        }
-
         //Initialize MyAdapter class
         myAdapter = new MyAdapter();
         recyclerView.setAdapter(myAdapter);
@@ -96,9 +91,5 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
         super.onResume();
 
         Log.d(TAG, "onResume");
-
-        for (Animal a: database.getDatabase()){
-            System.out.println(a);
-        }
     }
 }
