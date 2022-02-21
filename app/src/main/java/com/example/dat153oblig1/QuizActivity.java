@@ -150,8 +150,9 @@ public class QuizActivity extends AppCompatActivity {
         {
             timer();
             currentQuestion = questionsList.get(qCounter);
-            //tvQuestion.setImageURI(database.getAnimal(qCounter).getImage());
-            tvQuestion.setImageURI(currentQuestion.getQuestion());
+            tvQuestion.setImageURI(questionsList.get(currentQuestion.getCorrectAnsNo()-1).getQuestion());
+            //tvQuestion.setImageURI(database.getAnimal(currentQuestion.getCorrectAnsNo()-1).getImage());
+            //tvQuestion.setImageURI(questionsList.get(currentQuestion.).getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -201,9 +202,9 @@ public class QuizActivity extends AppCompatActivity {
         rndQ2 = 1;
         rndQ3 = 2;
 */
-        questionsList.add(new QuestionModel(database.getUri(rndQ1), database.getAnimalName(rndQ2), database.getAnimalName(rndQ1), database.getAnimalName(rndQ3),2));
-        questionsList.add(new QuestionModel(database.getUri(rndQ2), database.getAnimalName(rndQ3), database.getAnimalName(rndQ2), database.getAnimalName(rndQ1),2));
-        questionsList.add(new QuestionModel(database.getUri(rndQ3), database.getAnimalName(rndQ1), database.getAnimalName(rndQ2), database.getAnimalName(rndQ3),3));
+        questionsList.add(new QuestionModel(database.getAnimal(rndQ1).getImage(), database.getAnimalName(rndQ2), database.getAnimalName(rndQ1), database.getAnimalName(rndQ3),2));
+        questionsList.add(new QuestionModel(database.getAnimal(rndQ2).getImage(), database.getAnimalName(rndQ3), database.getAnimalName(rndQ2), database.getAnimalName(rndQ1),2));
+        questionsList.add(new QuestionModel(database.getAnimal(rndQ3).getImage(), database.getAnimalName(rndQ1), database.getAnimalName(rndQ2), database.getAnimalName(rndQ3),3));
 
     }
 }

@@ -53,6 +53,10 @@ public class QuestionModel {
         return correctAnsNo;
     }
 
+    public void setQuestion(Uri question) {
+        this.question = question;
+    }
+
     public void setCorrectAnsNo(int correctAnsNo) {
         this.correctAnsNo = correctAnsNo;
     }
