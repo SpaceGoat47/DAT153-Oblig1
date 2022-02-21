@@ -150,9 +150,7 @@ public class QuizActivity extends AppCompatActivity {
         {
             timer();
             currentQuestion = questionsList.get(qCounter);
-            tvQuestion.setImageURI(questionsList.get(currentQuestion.getCorrectAnsNo()-1).getQuestion());
-            //tvQuestion.setImageURI(database.getAnimal(currentQuestion.getCorrectAnsNo()-1).getImage());
-            //tvQuestion.setImageURI(questionsList.get(currentQuestion.).getQuestion());
+            tvQuestion.setImageURI(questionsList.get(qCounter).getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
